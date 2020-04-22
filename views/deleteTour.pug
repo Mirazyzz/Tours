@@ -1,0 +1,77 @@
+extends base
+
+block content
+    main.main
+        .user-view
+            nav.user-view__menu
+                ul.side-nav
+                    li.side-nav--active
+                        a(href='#')
+                            svg
+                                use(xlink:href='/img/icons.svg#icon-settings')
+                            | Settings
+                    li
+                        a(href='#')
+                            svg
+                                use(xlink:href='/img/icons.svg#icon-briefcase')
+                            | My bookings
+                    li
+                        a(href='#')
+                            svg
+                                use(xlink:href='/img/icons.svg#icon-star')
+                            | My reviews
+                    li
+                        a(href='#')
+                            svg
+                                use(xlink:href='/img/icons.svg#icon-credit-card')
+                            | Billing
+                
+                - if(user.role === 'admin')
+                    .admin-nav
+                        h5.admin-nav__heading Admin
+                        ul.side-nav
+                            li
+                                a(href='/manageTours')
+                                    svg
+                                        use(xlink:href='/img/icons.svg#icon-map')
+                                    | Manage tours
+                            li
+                                a(href='/addUser')
+                                    svg
+                                        use(xlink:href='/img/icons.svg#icon-users')
+                                    | Manage users
+                            li
+                                a(href='#')
+                                    svg
+                                        use(xlink:href='/img/icons.svg#icon-star')
+                                    | Manage reviews
+                            li
+                                a(href='#')
+                                    svg
+                                        use(xlink:href='/img/icons.svg#icon-briefcase')
+                                    | Manage bookings
+
+            .tour-view__content
+                .tour-view__form-container
+                    h2.heading-secondary.ma-bt-md Tour data
+                    form.form.form-tour-data                       
+                        .form__group
+                            label.form__label(for='name') Name
+                            input#name.form__input(type='text', value=`${tour.name}`, required)                        
+                        .form__group
+                            label.form__label(for='name') Price
+                            input#price.form__input(type='text', value=`${tour.price}`, required)
+                        .form__group
+                            label.form__label(for='name') Description
+                            input#description.form__input(type='text', value=`${tour.description}`, required)
+                        .form__group
+                            label.form__label(for='name') Summary
+                            input#summary.form__input(type='text', value=`${tour.summary}`, required)
+                        .form__group.form__id-tour
+                            label.form__label(for='id') Id                        
+                            input#id.form__input(type='text', value=`${tour._id}`, required)
+                        .form__group.form__slug-tour
+                            label.form__label(for='slug') Slug                       
+                            input#slug.form__input(type='text', value=`${tour.slug}`, required)
+                        .form__group.right
+                            a.btn.btn--red.btn--small Delete

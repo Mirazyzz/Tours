@@ -1,0 +1,101 @@
+extends base
+
+block content
+    main.main
+        .user-view
+            nav.user-view__menu
+                ul.side-nav
+                    li.side-nav--active
+                        a(href='#')
+                            svg
+                                use(xlink:href='/img/icons.svg#icon-settings')
+                            | Settings
+                    li
+                        a(href='#')
+                            svg
+                                use(xlink:href='/img/icons.svg#icon-briefcase')
+                            | My bookings
+                    li
+                        a(href='#')
+                            svg
+                                use(xlink:href='/img/icons.svg#icon-star')
+                            | My reviews
+                    li
+                        a(href='#')
+                            svg
+                                use(xlink:href='/img/icons.svg#icon-credit-card')
+                            | Billing
+                
+                - if(user.role === 'admin')
+                    .admin-nav
+                        h5.admin-nav__heading Admin
+                        ul.side-nav
+                            li
+                                a(href='/manageTours')
+                                    svg
+                                        use(xlink:href='/img/icons.svg#icon-map')
+                                    | Manage tours
+                            li
+                                a(href='/addUser')
+                                    svg
+                                        use(xlink:href='/img/icons.svg#icon-users')
+                                    | Manage users
+                            li
+                                a(href='#')
+                                    svg
+                                        use(xlink:href='/img/icons.svg#icon-star')
+                                    | Manage reviews
+                            li
+                                a(href='#')
+                                    svg
+                                        use(xlink:href='/img/icons.svg#icon-briefcase')
+                                    | Manage bookings
+
+            .tour-view__content
+                .tour-view__form-container
+                    h2.heading-secondary.ma-bt-md Tour data
+                    form.form.form-addtour-data                       
+                        .form__group
+                            label.form__label(for='name') Name
+                            input#name.form__input(type='text', placeholder='The Forest Hiker', required)
+                        .form__group
+                            label.form__label(for='date') Start Dates
+                            input#date-0.form__input(type='text', placeholder='2021-06-19T09:00:00.000Z', required)
+                        .form__group                            
+                            input#date-1.form__input(type='text', placeholder='2021-07-19T09:00:00.000Z', required)
+                        .form__group
+                            input#date-2.form__input(type='text', placeholder='2021-10-19T09:00:00.000Z', required)
+                        .form__group
+                            label.form__label(for='name') Guides
+                        .form__group
+                            input#guide-0.form__input(type='text', placeholder='Leo Gillespie', required)                            
+                        .form__group
+                            input#guide-1.form__input(type='text', placeholder='Jennifer Hardy', required)
+                        .form__group
+                            input#guide-2.form__input(type='text', placeholder='Kate Morrison', required)
+                        .form__group
+                            label.form__label(for='name') Duration
+                            input#duration.form__input(type='text', placeholder='5', required)
+                        .form__group
+                            label.form__label(for='name') Group size
+                            input#group-size.form__input(type='text', placeholder='25', required)
+                        .form__group
+                            label.form__label(for='name') Difficulty
+                            input#difficulty.form__input(type='text', placeholder='medium', required)
+                        .form__group
+                            label.form__label(for='name') Price
+                            input#price.form__input(type='text', placeholder='2000', required)
+                        .form__group
+                            label.form__label(for='name') Description
+                            input#description.form__input(type='text', value='Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\nIrure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.', required)
+                        .form__group
+                            label.form__label(for='name') Summary
+                            input#summary.form__input(type='text', placeholder='Exploring the jaw-dropping US east coast by foot and by boat', required)                        
+                        .form__group
+                            label.form__label(for='id') Photo
+                            input#photo.form__input(type='text', placeholder='tour-2-cover.jpg', required)                                                  
+                        .form__group.form__photo-upload
+                            img.form__user-photo(src=`/img/users/default.jpg`, alt='User photo')
+                            a.btn-text(href='') Choose new photo
+                        .form__group.right
+                            button.btn.btn--small.btn--green_add-new Add tour

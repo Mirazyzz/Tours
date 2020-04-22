@@ -1,0 +1,110 @@
+extends base
+
+block content
+    main.main
+        .user-view
+            nav.user-view__menu
+                ul.side-nav
+                    li.side-nav--active
+                        a(href='#')
+                            svg
+                                use(xlink:href='/img/icons.svg#icon-settings')
+                            | Settings
+                    li
+                        a(href='#')
+                            svg
+                                use(xlink:href='/img/icons.svg#icon-briefcase')
+                            | My bookings
+                    li
+                        a(href='#')
+                            svg
+                                use(xlink:href='/img/icons.svg#icon-star')
+                            | My reviews
+                    li
+                        a(href='#')
+                            svg
+                                use(xlink:href='/img/icons.svg#icon-credit-card')
+                            | Billing
+                
+                - if(user.role === 'admin')
+                    .admin-nav
+                        h5.admin-nav__heading Admin
+                        ul.side-nav
+                            li
+                                a(href='/manageTours')
+                                    svg
+                                        use(xlink:href='/img/icons.svg#icon-map')
+                                    | Manage tours
+                            li
+                                a(href='/addUser')
+                                    svg
+                                        use(xlink:href='/img/icons.svg#icon-users')
+                                    | Manage users
+                            li
+                                a(href='#')
+                                    svg
+                                        use(xlink:href='/img/icons.svg#icon-star')
+                                    | Manage reviews
+                            li
+                                a(href='#')
+                                    svg
+                                        use(xlink:href='/img/icons.svg#icon-briefcase')
+                                    | Manage bookings
+
+            .tour-view__content
+                .tour-view__form-container
+                    h2.heading-secondary.ma-bt-md Tour data
+                    form.form.form-tour-data                       
+                        .form__group
+                            label.form__label(for='name') Name
+                            input#name.form__input(type='text', value=`${data.tour.name}`, required)
+                        .form__group
+                            label.form__label(for='date') Start Dates
+                            input#date-0.form__input(type='text', value=`${data.tour.startDates[0]}`, required)
+                        .form__group                            
+                            input#date-1.form__input(type='text', value=`${data.tour.startDates[1]}`, required)
+                        .form__group
+                            input#date-2.form__input(type='text', value=`${data.tour.startDates[2]}`, required)
+                        .form__group
+                            label.form__label(for='name') Guides
+                        .form__group
+                            select.form__input(name='dropDown', id='guide-0')
+                                each guide in data.guides
+                                    option(value=guide._id) #{guide.name}
+                                option(selected= true, value= data.tour.guides[0]._id,) #{data.tour.guides[0].name}
+                        .form__group
+                            select.form__input(name='dropDown', id='guide-1')
+                                each guide in data.guides
+                                    option(value=guide._id) #{guide.name}
+                                option(value= data.tour.guides[0]._id, selected= true) #{data.tour.guides[1].name}
+                        .form__group
+                            select.form__input(name='dropDown', id='guide-2')
+                                each guide in data.guides
+                                    option(value=guide._id) #{guide.name}
+                                option(selected= true, value= data.tour.guides[0]._id,) #{data.tour.guides[2].name}
+                        .form__group
+                            label.form__label(for='name') Duration
+                            input#duration.form__input(type='text', value=`${data.tour.duration}`, required)
+                        .form__group
+                            label.form__label(for='name') Group size
+                            input#group-size.form__input(type='text', value=`${data.tour.maxGroupSize}`, required)
+                        .form__group
+                            label.form__label(for='name') Difficulty
+                            input#difficulty.form__input(type='text', value=`${data.tour.difficulty}}`, required)
+                        .form__group
+                            label.form__label(for='name') Price
+                            input#price.form__input(type='text', value=`${data.tour.price}`, required)
+                        .form__group
+                            label.form__label(for='name') Description
+                            input#description.form__input(type='text', value=`${data.tour.description}`, required)
+                        .form__group
+                            label.form__label(for='name') Summary
+                            input#summary.form__input(type='text', value=`${data.tour.summary}`, required)
+                        .form__group.form__id-tour
+                            label.form__label(for='id') Id
+                            input#id.form__input(type='text', value=`${data.tour._id}`, required)                                                    
+                        .form__group.form__photo-upload
+                            img.form__user-photo(src=`/img/users/default.jpg`, alt='User photo')
+                            a.btn-text(href='') Choose new photo
+                        .form__group.right
+                            button.btn.btn--small.btn--green Save settings
