@@ -26,7 +26,7 @@
         "nodemailer": "^4.7.0",
         "pug": "^2.0.4",
         "slugify": "^1.3.6",
-        "validator": "^12.1.0"
+        "validator": "^13.7.0"
     },
     "devDependencies": {
         "eslint": "^5.16.0",
